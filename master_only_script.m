@@ -53,6 +53,10 @@ ylabel('Rating 1-5','FontSize',14)
 xlabel('Criteria','FontSize',14)
 title('Spread of paper averages for each criteria','FontSize',14)
 
+%Save figure
+export_name = [master_dir,'/figures/fig_01.png'];
+export_fig(export_name,'-png')
+
 %Make matrix of scatter plots
 fig_2 = figure;
 subplot_ind = 0;
@@ -77,6 +81,9 @@ for i = 1:10
     end
 end
 
+%Save figure
+export_name = [master_dir,'/figures/fig_02.png'];
+export_fig(export_name,'-png')
 %%
 function y2 = linear_reg(x,y)
 
