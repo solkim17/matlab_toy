@@ -16,12 +16,12 @@ if ~isequal(dir_check,'/matlab_toy')
 else
     disp('Directory set correctly')
 end
+%%
 
 %Data file
 data_file = which('DS421_survey_responses.xlsx') %Finds file within master directory
 %Load numeric and text data from sheet 'FinalTable'
 [num,txt] = xlsread(data_file,'FinalTable');
-
 %Clean text data
 txt = txt(1,2:end)'
 %Some criteria are long and making them difficult to add as axes labels
@@ -38,12 +38,6 @@ txt = txt(1,2:end)'
 %     {'Extension'        } > {'Ext'}
 criteria = {'Mod';'Data';'MRE';'AEng';'Maint';'Read';'ExWFlw';'UfOAF';'ReAn';'Ext'};
 
-%Save intermediate numeric data as both .mat and easier to interpret ascii .txt
-mat_file = [master_dir,'/data/intermediate/paper_averages.mat'];
-txt_file = [master_dir,'/data/intermediate/paper_averages.txt'];
-save(mat_file,'num')
-save(txt_file,'num','-ascii')
-
 %Make box-whisker plot for each criteria with survey data averages per paper
 fig_1 = figure;
 boxplot(num,criteria)
@@ -53,6 +47,7 @@ ylabel('Rating 1-5','FontSize',14)
 xlabel('Criteria','FontSize',14)
 title('Spread of paper averages for each criteria','FontSize',14)
 
+%%
 %Make matrix of scatter plots
 fig_2 = figure;
 subplot_ind = 0;
@@ -76,7 +71,9 @@ for i = 1:10
         end
     end
 end
-
+% mtit('Scatter plots of each criteria','FontSize',14)
+%%
+mtit('Scatter plots of each criteria','FontSize',14)
 %%
 function y2 = linear_reg(x,y)
 
